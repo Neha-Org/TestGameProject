@@ -18,13 +18,13 @@ public class UserGameCreditController {
     private UserGameCreditService userGameCreditService;
 
     @PostMapping("/user/credit")
-    public GameCredit createUserGameLevel(@RequestBody GameCredit gameCredit) throws Exception {
-        return userGameCreditService.saveUserGameCredit(gameCredit);
+    public ResponseEntity<?> createUserGameLevel(@RequestBody GameCredit gameCredit) throws Exception {
+        return new ResponseEntity<GameCredit>(userGameCreditService.saveUserGameCredit(gameCredit), HttpStatus.CREATED);
     }
 
     @GetMapping("/user/max_credit")
-    public List<MaxCreditForLevels> getMaxCreditForGameByLevel() {
-        return userGameCreditService.getMaxCreditForGameByLevel();
+    public ResponseEntity<?> getMaxCreditForGameByLevel() {
+        return new ResponseEntity<List<MaxCreditForLevels>>(userGameCreditService.getMaxCreditForGameByLevel(), HttpStatus.OK);
     }
 
     @ExceptionHandler({Exception.class})

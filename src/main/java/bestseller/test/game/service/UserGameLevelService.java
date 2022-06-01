@@ -31,7 +31,7 @@ public class UserGameLevelService {
         return null;
     }
 
-    public void saveUserGameLevel(GameLevel gameLevel) throws Exception {
+    public GameLevel saveUserGameLevel(GameLevel gameLevel) throws Exception {
         Optional<Game> game = gameRepoDAO.findById(gameLevel.getGameId());
         Optional<User> user = userRepoDAO.findById(gameLevel.getUserId());
         if(game.isEmpty() || user.isEmpty()) {
@@ -43,6 +43,7 @@ public class UserGameLevelService {
         userGameLevel.setUser(userRepoDAO.findById(gameLevel.getUserId()).get());
         userGameLevel.setLevel(gameLevel.getLevel().name());
         userGameLevelDAO.save(userGameLevel);
+        return gameLevel;
     }
 
 }

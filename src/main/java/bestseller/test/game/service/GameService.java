@@ -16,9 +16,8 @@ public class GameService {
     @Autowired
     private GameRepoDAO gameRepoDAO;
 
-    public Game findById(Integer id) {
-        Optional<Game> output = gameRepoDAO.findById(id);
-        return output.isPresent() ? output.get() : null;
+    public Optional<Game> findById(Integer id) {
+        return gameRepoDAO.findById(id);
     }
 
     public List<Game> getAllGames() {

@@ -49,7 +49,8 @@ public class UserServiceTest {
         User user1 = new User();
         user1.setId(1);
         Mockito.when(userRepoDAO.findById(1)).thenReturn(Optional.of(user1));
-        User output = userService.findById(1);
-        Assert.isTrue(output.getId() == 1, "Find by ID success");
+        Optional<User> output = userService.findById(1);
+        Assert.isTrue(output.isPresent(), "Find by ID success");
+        Assert.isTrue(output.get().getId() == 1, "ID is equal to 1");
     }
 }

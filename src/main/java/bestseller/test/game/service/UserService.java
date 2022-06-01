@@ -15,9 +15,8 @@ public class UserService {
     @Autowired
     private UserRepoDAO userRepoDAO;
 
-    public User findById(Integer id) {
-        Optional<User> output = userRepoDAO.findById(id);
-        return output.isPresent() ? output.get() : null;
+    public Optional<User> findById(Integer id) {
+        return userRepoDAO.findById(id);
     }
 
     public List<User> getAllUsers() {
@@ -29,7 +28,4 @@ public class UserService {
         return userRepoDAO.save(user);
     }
 
-    public void deleteUser(User user) {
-        userRepoDAO.delete(user);
-    }
 }

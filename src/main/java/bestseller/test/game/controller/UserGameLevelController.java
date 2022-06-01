@@ -21,12 +21,12 @@ public class UserGameLevelController {
     }
 
     @PostMapping("/user/level")
-    public void createUserGameLevel(@RequestBody GameLevel gameLevel) throws Exception {
-        userGameService.saveUserGameLevel(gameLevel);
+    public ResponseEntity<?> createUserGameLevel(@RequestBody GameLevel gameLevel) throws Exception {
+        return new ResponseEntity<GameLevel>(userGameService.saveUserGameLevel(gameLevel), HttpStatus.CREATED);
     }
 
     @ExceptionHandler({Exception.class})
-    public ResponseEntity<Object> handleException() {
+    public ResponseEntity<?> handleException() {
         return new ResponseEntity<Object>(
                 "Invalid Parameters", new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
