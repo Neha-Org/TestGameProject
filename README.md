@@ -69,3 +69,34 @@ curl --location --request GET 'http://localhost:8080/v1/bestseller/search?level=
 
 ### MAX CREDIT FOR EACH GAME BASED ON LEVELs
 curl --location --request GET 'http://localhost:8080/v1/bestseller/user/max_credit'
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### APIs to enroll gamers and their interest
+#### Which takes the general details (name, gender, nickname, geography(europe,asia,usa))
+#####  I have created user table and POST API to create users
+#### Lookup up Any 5 games(fortnite, call of duty, dota, valhalla, amongus,…).
+#####  I have created game table and POST API to create games.( createdummygames API will create some data for test)
+#### Gamers individual interests with their levels (noob, pro, invincible)
+##### Created user/level API which takes input REQUEST BODY as 
+{
+  "userId": 2,
+  "gameId": 4,
+  "level": "INVINCIBLE"
+}
+	
+####	Search API based on gamers levels, games and geography for auto-matching
+##### 	game-search API  is created
+##### http://localhost:8080/v1/bestseller/search?level=PRO&geography=Europe&gameName=call of duty
+####	API to give credits to individual users
+#####	Created user/credit API which takes input REQUEST BODY as 
+{
+  "userId": 2,
+  "gameId": 4,
+  "credit": 2500
+}
+####	API to get the gamer with maximum credits for each game based on their levels.
+#####	GET 'http://localhost:8080/v1/bestseller/user/max_credit'
+
