@@ -19,3 +19,53 @@ http://localhost:8080/v1/bestseller/swagger-ui
 
 * API DOCS JSON :
 http://localhost:8080/v1/bestseller/v3/api-docs/
+
+## How to Use
+### CREATE USER
+curl --location --request POST 'http://localhost:8080/v1/bestseller/user' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "name": "Neha Gawhane",
+  "nickname": "dolly",
+  "geography": "Europe"
+}'
+
+### GET ALL USERS
+curl --location --request GET 'http://localhost:8080/v1/bestseller/users'
+
+### CREATE TEST DATA for GAMES
+curl --location --request POST 'http://localhost:8080/v1/bestseller/createdummygames' \
+--header 'Content-Type: application/json' \
+--data-raw '[
+  {
+    "name": "test"
+  }
+]'
+
+### GET ALL GAMES
+curl --location --request GET 'http://localhost:8080/v1/bestseller/games'
+
+### CREATE USER GAME LEVEL
+curl --location --request POST 'http://localhost:8080/v1/bestseller/user/level' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "userId": 1,
+  "gameId": 1,
+  "level": "PRO"
+}
+'
+
+### CREATE USER GAME CREDIT
+curl --location --request POST 'http://localhost:8080/v1/bestseller/user/credit' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "userId": 3,
+  "gameId": 3,
+  "credit": 2500
+}'
+
+### SEARCH BY PARAM
+curl --location --request GET 'http://localhost:8080/v1/bestseller/search?level=PRO&geography=Europe&gameName=call of duty'
+
+### MAX CREDIT FOR EACH GAME BASED ON LEVELs
+curl --location --request GET 'http://localhost:8080/v1/bestseller/user/max_credit'
