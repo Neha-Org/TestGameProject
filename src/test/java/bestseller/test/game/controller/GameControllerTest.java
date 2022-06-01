@@ -12,8 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 public class GameControllerTest {
@@ -25,7 +29,7 @@ public class GameControllerTest {
     private GameService gameService;
 
     @Test
-    public void testAddEmployee() {
+    public void testCreateGame() {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Game game = new Game(1, "TestGame", LocalDateTime.now(), null);
@@ -34,6 +38,17 @@ public class GameControllerTest {
         Game output = (Game) responseEntity.getBody();
         Assertions.assertEquals(responseEntity.getStatusCodeValue(), 201);
         Assertions.assertEquals(output.getId(), game.getId());
+    }
 
+    @Test
+    public void testGetAllGamesError() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        Mockito.when(gameService.getAllGames()).thenReturn(new ArrayList<>());
+        ResponseStatusException thrown = Assertions.assertThrows(
+                ResponseStatusException.class,
+                () -> gameController.getAllGames(),
+                "Expected doThing() to throw, but it didn't"
+        );
     }
 }
