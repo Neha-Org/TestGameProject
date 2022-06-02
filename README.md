@@ -25,6 +25,10 @@ http://localhost:8080/v1/bestseller/v3/api-docs/
 ![ER diagram Test game](https://user-images.githubusercontent.com/15629062/171558203-768e97ba-ba3d-4827-adf0-bde020882642.png)
 
 ## How to Use
+
+### Start Application
+Run Main Spring Boot Application class **BestsellerTestGameApplication** as Java Application
+
 ### CREATE USER
 curl --location --request POST 'http://localhost:8080/v1/bestseller/user' \
 --header 'Content-Type: application/json' \
